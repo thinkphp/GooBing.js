@@ -90,18 +90,18 @@ var GooBing = function(){
 
                 url_for_bing = endpoint_for_bing + '?' + 'Appid=' + api_key_for_bing + '&query='+ searchTerm + '&web.count=10&offset=0&sources=web&JsonType=callback';
 
+            cuba.jsonp(url_for_bing, function( data ){
+
+                 this.render_bing( data.SearchResponse.Web.Results)  
+
             cuba.jsonp(url_for_google, function( data ){
 
                  this.render_google( data.responseData.results )  
 
             }.bind(GooBing))
 
-            cuba.jsonp(url_for_bing, function( data ){
 
-                 this.render_bing( data.SearchResponse.Web.Results || data.ResponseData.Results )  
-
-            }.bind( GooBing ), undefined, 'JsonCallback')
-
+            }.bind( GooBing ), undefined, 'JsonCallback')           
     }
 
     function render_google( res ) {
